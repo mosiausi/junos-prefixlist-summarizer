@@ -21,3 +21,12 @@ Instead of manually cleaning up long, messy prefix-lists, this tool outputs prec
 ## 🚀 Usage
 ```bash
 python3 junos_prefix_summarize.py input.conf
+```
+
+---
+
+⚠ Disclaimer
+This tool is provided "AS IS", without warranty of any kind.
+Author: Moshiko Nayman
+I am not responsible for any damage, misconfiguration, or downtime caused by using this script.
+Always review generated changes before applying them to production systems.
