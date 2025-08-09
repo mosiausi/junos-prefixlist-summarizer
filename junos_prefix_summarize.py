@@ -64,6 +64,13 @@ def parse_prefix_lists(lines):
                 pass
     return pl, duplicates
 
+def are_adjacent(a, b):
+    """Check if networks a and b are adjacent and same prefixlen."""
+    return (
+        a.prefixlen == b.prefixlen
+        and int(b.network_address) == int(a.network_address) + a.num_addresses
+    )
+
 def exact_merge(networks_set):
     """
     Efficient exact merge of adjacent subnets of the same size.
@@ -80,7 +87,7 @@ def exact_merge(networks_set):
         while i < len(same_plen) - 1:
             a = same_plen[i]
             b = same_plen[i + 1]
-            if int(a.broadcast_address) + 1 == int(b.network_address) and a.prefixlen == b.prefixlen:
+            if are_adjacent(a, b):
                 try:
                     cand = a.supernet(prefixlen_diff=1)
                 except ValueError:
